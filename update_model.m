@@ -8,7 +8,7 @@ function [] = updateModel(spreadsheet)
 % Local file or Google spreadsheet location
 
 if nargin<1
-    spreadsheet = 'F:/enhancer_dynamics/model_v2/chromatin_model.xlsx';
+    spreadsheet = 'chromatin_model.xlsx';
     disp('Reading model from spreadsheet:')
     disp(spreadsheet)
 end

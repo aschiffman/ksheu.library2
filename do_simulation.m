@@ -99,7 +99,7 @@ subplot(1,length(names),j);
 imagesc(output_enhancer);
 title(char(names(j)));
 colorbar
-save(strcat('F://enhancer_dynamics/model_v2/output_enhancer_',data_name,'.mat'), 'output_enhancer')
+save(strcat('output_enhancer_',data_name,'.mat'), 'output_enhancer')
 end
 %%
 %replot input 
@@ -125,7 +125,7 @@ for j = 1:length(names)
     maxA = max(data_smooth, [], 2); %absolute row max
     [~, index] = sort(maxA);
     data_smooth = data_smooth(index, :);
-    save(strcat('F://enhancer_dynamics/model_v2/model_input_nfkb_dynamics_',data_name,'.mat'), 'data_smooth')
+    save(strcat('model_input_nfkb_dynamics_',data_name,'.mat'), 'data_smooth')
 
 %     data_smooth = sortrows(data_smooth, {'maxA'}); %max within first 100 mins
 
@@ -155,7 +155,7 @@ names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50u
 % names = {'TNF10ng_762', 'ikbamut_10ngTNF'};
 for j = 1:length(names)
     data_name = char(names(j));
-    data = load(strcat('F://enhancer_dynamics/model_v2/output_enhancer_',data_name,'.mat'));
+    data = load(strcat('output_enhancer_',data_name,'.mat'));
     subplot(1,length(names),j);
     data = data.output_enhancer;
     imagesc(data);
@@ -172,7 +172,7 @@ names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50u
 % names = {'TNF10ng_762', 'ikbamut_10ngTNF'};
 for j = 1:length(names)
     data_name = char(names(j));
-    data = load(strcat('F://enhancer_dynamics/model_v2/output_enhancer_',data_name,'.mat'));
+    data = load(strcat('output_enhancer_',data_name,'.mat'));
     subplot(1,length(names),j);
     data = data.output_enhancer;
     % sdev = std(data);
@@ -189,7 +189,7 @@ end
 names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50ug_566',};
 for j = 1:length(names)
     data_name = char(names(j));
-    data = load(strcat('F://enhancer_dynamics/model_v2/output_enhancer_',data_name,'.mat'));
+    data = load(strcat('output_enhancer_',data_name,'.mat'));
     subplot(1,length(names),j);
     data = data.output_enhancer;
 
