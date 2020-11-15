@@ -19,24 +19,25 @@ names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50u
 %%
 for j = 1:length(names)
 data_name = char(names(j));
-data = load(strcat('F://enhancer_dynamics/nfkb_trajectories_08142019/nfkb_dynamics_',data_name,'.mat'));
-% data = load('F://enhancer_dynamics/nfkb_trajectories_20190302/2KO_TNF.mat');
-data = cell2struct(struct2cell(data), {'trajectories'});
-if istable(data.trajectories)
-    data = table2array(data.trajectories);
-else
-    data = data.trajectories;
-end
-data_smooth = smoothrows(data);
-data_smooth(any(isnan(data_smooth), 2), :) = []; %remove NaN rows
-
-datazero = vec2mat(data_smooth(:, 1), 1);
-subtract = repmat(datazero, 1, size(data,2));
-data_smooth = data_smooth - subtract; %subtract the first column to normalize
-data_smooth(data_smooth<0) = 0; %take neg. values to be 0
-maxA = max(data_smooth, [], 2);
-[~, index] = sort(maxA);
-data_smooth = data_smooth(index, :);
+% data = load(strcat('F://enhancer_dynamics/nfkb_trajectories_08142019/nfkb_dynamics_',data_name,'.mat'));
+% % data = load('F://enhancer_dynamics/nfkb_trajectories_20190302/2KO_TNF.mat');
+% data = cell2struct(struct2cell(data), {'trajectories'});
+% if istable(data.trajectories)
+%     data = table2array(data.trajectories);
+% else
+%     data = data.trajectories;
+% end
+% data_smooth = smoothrows(data);
+% data_smooth(any(isnan(data_smooth), 2), :) = []; %remove NaN rows
+% 
+% datazero = vec2mat(data_smooth(:, 1), 1);
+% subtract = repmat(datazero, 1, size(data,2));
+% data_smooth = data_smooth - subtract; %subtract the first column to normalize
+% data_smooth(data_smooth<0) = 0; %take neg. values to be 0
+% maxA = max(data_smooth, [], 2);
+% [~, index] = sort(maxA);
+% data_smooth = data_smooth(index, :);
+data_smooth = load(strcat('model_input_nfkb_dynamics_',data_name,'.mat'));
 
 START_TIME =0;
 END_TIME = 480;
@@ -108,24 +109,25 @@ names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50u
 % names = {'TNF10ng_762', 'ikbamut_10ngTNF'};
 for j = 1:length(names)
     data_name = char(names(j));
-    data = load(strcat('F://enhancer_dynamics/nfkb_trajectories_08142019/nfkb_dynamics_',data_name,'.mat'));
-    data = cell2struct(struct2cell(data), {'trajectories'});
-    if istable(data.trajectories)
-        data = table2array(data.trajectories);
-    else
-        data = data.trajectories;
-    end
-    data_smooth = smoothrows(data);
-    data_smooth(any(isnan(data_smooth), 2), :) = []; %remove NaN rows
-
-    datazero = vec2mat(data_smooth(:, 1), 1);
-    subtract = repmat(datazero, 1, size(data,2));
-    data_smooth = data_smooth - subtract; %subtract the first column to normalize
-    data_smooth(data_smooth<0) = 0; %take neg. values to be 0
-    maxA = max(data_smooth, [], 2); %absolute row max
-    [~, index] = sort(maxA);
-    data_smooth = data_smooth(index, :);
-    save(strcat('model_input_nfkb_dynamics_',data_name,'.mat'), 'data_smooth')
+%     data = load(strcat('F://enhancer_dynamics/nfkb_trajectories_08142019/nfkb_dynamics_',data_name,'.mat'));
+%     data = cell2struct(struct2cell(data), {'trajectories'});
+%     if istable(data.trajectories)
+%         data = table2array(data.trajectories);
+%     else
+%         data = data.trajectories;
+%     end
+%     data_smooth = smoothrows(data);
+%     data_smooth(any(isnan(data_smooth), 2), :) = []; %remove NaN rows
+% 
+%     datazero = vec2mat(data_smooth(:, 1), 1);
+%     subtract = repmat(datazero, 1, size(data,2));
+%     data_smooth = data_smooth - subtract; %subtract the first column to normalize
+%     data_smooth(data_smooth<0) = 0; %take neg. values to be 0
+%     maxA = max(data_smooth, [], 2); %absolute row max
+%     [~, index] = sort(maxA);
+%     data_smooth = data_smooth(index, :);
+%     save(strcat('model_input_nfkb_dynamics_',data_name,'.mat'), 'data_smooth')
+    data_smooth = load(strcat('model_input_nfkb_dynamics_',data_name,'.mat'));
 
 %     data_smooth = sortrows(data_smooth, {'maxA'}); %max within first 100 mins
 
