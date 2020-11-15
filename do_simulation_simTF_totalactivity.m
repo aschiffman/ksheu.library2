@@ -113,7 +113,7 @@ names = {'nfkb_oscillatory','nfkb_nonoscillatory'};
 figure;
 for j = 1:length(names)
     data_name = char(names(j));
-    data = load(strcat('F://enhancer_dynamics/nfkb_trajectories/simTFs/',data_name,'.mat'));
+    data = load(strcat(data_name,'.mat'));
     data = cell2struct(struct2cell(data), {'nfkb_curves'});
     data = (data.nfkb_curves)*1;
     
