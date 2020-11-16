@@ -13,7 +13,8 @@ global START_TIME END_TIME NUM_CELLS
 % data_name = 'cpg_100nM';
 % data_name = 'pic_50ug';
 
-names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50ug_566','aKO_TNF3.3ng', 'aKO_LPS33ng', 'ikbamut_10ngTNF'};
+% names = {'TNF10ng_762'}; %debugging
+names = {'TNF10ng_762', 'P3CSK4100ng_547','CpG100nM_610', 'LPS100ng_756','PIC50ug_566'};
 % names = {'aKO_TNF3.3ng', 'aKO_LPS33ng'};
 % names = {'WT_10ngTNF', 'ikbamut_10ngTNF'};
 %%
@@ -38,6 +39,7 @@ data_name = char(names(j));
 % [~, index] = sort(maxA);
 % data_smooth = data_smooth(index, :);
 data_smooth = load(strcat('model_input_nfkb_dynamics_',data_name,'.mat'));
+data_smooth = data_smooth.data_smooth;
 
 START_TIME =0;
 END_TIME = 480;
@@ -128,6 +130,7 @@ for j = 1:length(names)
 %     data_smooth = data_smooth(index, :);
 %     save(strcat('model_input_nfkb_dynamics_',data_name,'.mat'), 'data_smooth')
     data_smooth = load(strcat('model_input_nfkb_dynamics_',data_name,'.mat'));
+    data_smooth = data_smooth.data_smooth;
 
 %     data_smooth = sortrows(data_smooth, {'maxA'}); %max within first 100 mins
 
