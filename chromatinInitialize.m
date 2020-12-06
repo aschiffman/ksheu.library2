@@ -60,6 +60,76 @@ params(27,1) = 106.993; % Widom 2011
 params(27,2) = 3; % Hill coefficient for TF binding
 params(27,3) = 0.8; % Kd for TF binding
 params(28,1) = 4.12317; % Widom 2011
+params(28,2) = 10; % Widom 2011
+params(28,3) = 3; % Hill coefficient for TF binding
+params(28,4) = 0.8; % Kd for TF binding
+params(29,1) = 75; % Widom 2011
+params(30,1) = 12; % Widom 2011
+params(30,2) = 3; % Hill coefficient for TF binding
+params(30,3) = 0.8; % Kd for TF binding
+params(31,1) = 60; % Widom 2011
+params(32,1) = 14.4; % Widom 2011
+params(32,2) = 3; % Hill coefficient for TF binding
+params(32,3) = 0.8; % Kd for TF binding
+params(33,1) = 48; % Widom 2011
+params(34,1) = 17.28; % Widom 2011
+params(34,2) = 3; % Hill coefficient for TF binding
+params(34,3) = 0.8; % Kd for TF binding
+params(35,1) = 38.4; % Widom 2011
+params(36,1) = 20.736; % Widom 2011
+params(36,2) = 3; % Hill coefficient for TF binding
+params(36,3) = 0.8; % Kd for TF binding
+params(37,1) = 30.72; % Widom 2011
+params(38,1) = 24.8832; % Widom 2011
+params(38,2) = 3; % Hill coefficient for TF binding
+params(38,3) = 0.8; % Kd for TF binding
+params(39,1) = 24.576; % Widom 2011
+params(40,1) = 29.8598; % Widom 2011
+params(40,2) = 3; % Hill coefficient for TF binding
+params(40,3) = 0.8; % Kd for TF binding
+params(41,1) = 19.6608; % Widom 2011
+params(42,1) = 35.8318; % Widom 2011
+params(42,2) = 3; % Hill coefficient for TF binding
+params(42,3) = 0.8; % Kd for TF binding
+params(43,1) = 15.7286; % Widom 2011
+params(44,1) = 42.9982; % Widom 2011
+params(44,2) = 3; % Hill coefficient for TF binding
+params(44,3) = 0.8; % Kd for TF binding
+params(45,1) = 12.5829; % Widom 2011
+params(46,1) = 51.5978; % Widom 2011
+params(46,2) = 3; % Hill coefficient for TF binding
+params(46,3) = 0.8; % Kd for TF binding
+params(47,1) = 10.0663; % Widom 2011
+params(48,1) = 61.9174; % Widom 2011
+params(48,2) = 3; % Hill coefficient for TF binding
+params(48,3) = 0.8; % Kd for TF binding
+params(49,1) = 8.05306; % Widom 2011
+params(50,1) = 74.3008; % Widom 2011
+params(50,2) = 3; % Hill coefficient for TF binding
+params(50,3) = 0.8; % Kd for TF binding
+params(51,1) = 6.44245; % Widom 2011
+params(52,1) = 89.161; % Widom 2011
+params(52,2) = 3; % Hill coefficient for TF binding
+params(52,3) = 0.8; % Kd for TF binding
+params(53,1) = 5.15396; % Widom 2011
+params(54,1) = 106.993; % Widom 2011
+params(54,2) = 3; % Hill coefficient for TF binding
+params(54,3) = 0.8; % Kd for TF binding
+params(55,1) = 1; % Assuming constant rate to begin
+params(55,2) = 1; % Assuming constant rate to begin
+params(55,3) = 1; % Assuming constant rate to begin
+params(55,4) = 1; % Assuming constant rate to begin
+params(55,5) = 1; % Assuming constant rate to begin
+params(55,6) = 1; % Assuming constant rate to begin
+params(55,7) = 1; % Assuming constant rate to begin
+params(55,8) = 1; % Assuming constant rate to begin
+params(55,9) = 1; % Assuming constant rate to begin
+params(55,10) = 1; % Assuming constant rate to begin
+params(55,11) = 1; % Assuming constant rate to begin
+params(55,12) = 1; % Assuming constant rate to begin
+params(55,13) = 1; % Assuming constant rate to begin
+params(55,14) = 1; % Assuming constant rate to begin
+params(55,15) = 1; % Assuming constant rate to begin
 
 
 % SPECIES
@@ -79,4 +149,19 @@ species.NAMES = {...
 'E_12' ...13
 'E_13' ...14
 'E_14' ...15
+'Eh_0' ...16
+'Eh_1' ...17
+'Eh_2' ...18
+'Eh_3' ...19
+'Eh_4' ...20
+'Eh_5' ...21
+'Eh_6' ...22
+'Eh_7' ...23
+'Eh_8' ...24
+'Eh_9' ...25
+'Eh_10' ...26
+'Eh_11' ...27
+'Eh_12' ...28
+'Eh_13' ...29
+'Eh_14' ...30
 };
