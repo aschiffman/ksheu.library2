@@ -64,6 +64,7 @@ reactants = {}; products = {};
 for i = 1:size(param_num,1)
     if param_num(i,2)==1
         reactants = cat(1,reactants,{strsplit(rxn_data{i,col_start(i)},'+')});
+%         celldisp(reactants);
         products = cat(1,products,{strsplit(rxn_data{i,col_start(i)+2},'+')});
     end
 end

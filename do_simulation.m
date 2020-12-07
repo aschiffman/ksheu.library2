@@ -54,7 +54,7 @@ sim.time = START_TIME:END_TIME;
 % plot( f, transpose(time(:,1:96)*5), transpose(tf) )
 
 % Starting Conditions
-    initvalues = zeros(15,1);
+    initvalues = zeros(30,1);
     initvalues(1,1) = 1;    %E0
     initvalues(2,1) = 0;    %E1
 
@@ -72,7 +72,6 @@ sim.time = START_TIME:END_TIME;
     initvalues(13,1) = 0;   %E12
     initvalues(14,1) = 0;   %E13
     initvalues(15,1) = 0;   %E14
-    
 
 output_enhancer = zeros(NUM_CELLS,481); %container to store the outputs
 r = (1:NUM_CELLS); 
