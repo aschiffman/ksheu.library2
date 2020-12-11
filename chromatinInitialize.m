@@ -115,21 +115,22 @@ params(54,1) = 5.15396; % Widom 2011
 params(55,1) = 106.993; % Widom 2011
 params(55,2) = 3; % Hill coefficient for TF binding
 params(55,3) = 0.8; % Kd for TF binding
-params(56,1) = 0.001; % Assuming constant rate to begin
-params(57,1) = 0.001; % Assuming constant rate to begin
-params(58,1) = 0.001; % Assuming constant rate to begin
-params(59,1) = 0.001; % Assuming constant rate to begin
-params(60,1) = 0.001; % Assuming constant rate to begin
-params(61,1) = 0.001; % Assuming constant rate to begin
-params(62,1) = 0.001; % Assuming constant rate to begin
-params(63,1) = 0.001; % Assuming constant rate to begin
-params(64,1) = 0.001; % Assuming constant rate to begin
-params(65,1) = 0.001; % Assuming constant rate to begin
-params(66,1) = 0.001; % Assuming constant rate to begin
-params(67,1) = 0.001; % Assuming constant rate to begin
-params(68,1) = 0.001; % Assuming constant rate to begin
-params(69,1) = 0.001; % Assuming constant rate to begin
-params(70,1) = 0.001; % Assuming constant rate to begin
+params(56,1) = 4.12317; % Widom 2011
+params(57,1) = 0.01; % Assuming constant rate to begin
+params(58,1) = 0.01; % Assuming constant rate to begin
+params(59,1) = 0.01; % Assuming constant rate to begin
+params(60,1) = 0.01; % Assuming constant rate to begin
+params(61,1) = 0.01; % Assuming constant rate to begin
+params(62,1) = 0.01; % Assuming constant rate to begin
+params(63,1) = 0.01; % Assuming constant rate to begin
+params(64,1) = 0.01; % Assuming constant rate to begin
+params(65,1) = 0.01; % Assuming constant rate to begin
+params(66,1) = 0.01; % Assuming constant rate to begin
+params(67,1) = 0.01; % Assuming constant rate to begin
+params(68,1) = 0.01; % Assuming constant rate to begin
+params(69,1) = 0.01; % Assuming constant rate to begin
+params(70,1) = 0.01; % Assuming constant rate to begin
+params(71,1) = 0.01; % Assuming constant rate to begin
 
 
 % SPECIES
