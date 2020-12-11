@@ -22,6 +22,9 @@ names = {'nfkb_oscillatory','nfkb_nonoscillatory'};
 
 figure;
 output_container = zeros(21, 2);
+num_amplitudes = 21*length(names);
+output_unmod = zeros(num_amplitudes, 481);
+output_mod = zeros(num_amplitudes, 481);
 for j = 1:length(names)
     data_name = char(names(j));
     data = load(strcat(data_name,'.mat'));
@@ -36,8 +39,8 @@ for j = 1:length(names)
         data_use = (data.nfkb_curves)*8*k; %times 8 to get on the same scale as real data (max 0.25nM)
 
         % Starting Conditions
-        initvalues = zeros(15,1);
-        initvalues(1,1) = 1;    %E0
+        initvalues = zeros(30,1);
+        initvalues(1,1) = 1;    %E0 - closed
         initvalues(2,1) = 0;    %E1
 
         initvalues(3,1) = 0;   %E2
@@ -53,7 +56,22 @@ for j = 1:length(names)
         initvalues(12,1) = 0;   %E11
         initvalues(13,1) = 0;   %E12
         initvalues(14,1) = 0;   %E13
-        initvalues(15,1) = 0;   %E14
+        initvalues(15,1) = 0;   %E14 - open
+        initvalues(16,1) = 0;   %Eh0 - closed, modified
+        initvalues(17,1) = 0;   %Eh1
+        initvalues(18,1) = 0;   %Eh2
+        initvalues(19,1) = 0;   %Eh3
+        initvalues(20,1) = 0;   %Eh4
+        initvalues(21,1) = 0;   %Eh5
+        initvalues(22,1) = 0;   %Eh6
+        initvalues(23,1) = 0;   %Eh7
+        initvalues(24,1) = 0;   %Eh8
+        initvalues(25,1) = 0;   %Eh9
+        initvalues(26,1) = 0;   %Eh10
+        initvalues(27,1) = 0;   %Eh11
+        initvalues(28,1) = 0;   %Eh12
+        initvalues(29,1) = 0;   %Eh13
+        initvalues(30,1) = 0;   %Eh14 - open, modified
 
         tf = transpose(data_use); %cut to 8hrs
         time = linspace(START_TIME, END_TIME, length(tf));
@@ -61,18 +79,43 @@ for j = 1:length(names)
 
         output = transpose(interp1(tsim1,results1,START_TIME:END_TIME, 'linear'));
 
-        %plot single simulation
-        plot(output(15,:));
-        xlim ([0 480]);
-        ylim([0 1]);
-        hold on;
+        %store single simulation
+        output_unmod(j*n,:) = output(15,:);
+        output_mod(j*n,:) = output(30,:);
 
     max_enhancer = max(output(15,:));
+    max_enhancer_mod = max(output(30,:));
     output_container(n,j) = max_enhancer;
+    output_container_mod(n,j) = max_enhancer_mod;
     n=n+1;
     end
 
 end
+
+%plot single simulation, mmodified open fraction over time
+figure;
+for k = 1:size(output_mod,1)
+    plot(output_mod(k,:)); %15=E_0 open, 30=E_h0 open
+    xlim ([0 480]);
+    ylim([0 1]);
+    hold on;
+end
+hold off;
+xlabel('time (min)');
+ylabel('fraction (E_{h0})');
+
+%plot single simulation, unmmodified open fraction over time
+figure;
+for k = 1:size(output_unmod,1)
+    plot(output_unmod(k,:)); %15=E_0 open, 30=E_h0 open
+    xlim ([0 480]);
+    ylim([0 1]);
+    hold on;
+end
+hold off;
+xlabel('time (min)');
+ylabel('fraction (E_{0})');
+
 
 %%
 %plot output_container, max chromatin opening
@@ -87,14 +130,50 @@ xlabel('amplitude (fold)');
 ylabel('fraction (E_0)');
 legend('oscillatory','non-oscillatory')
 
-%%
-%plot fold change in max chromatin opening for osc. vs non-osc
-output_container(:,3) = linspace(0,1,21);
+% plot max methylated chromatin opening
+output_container_mod(:,3) = linspace(0,1,21);
 figure;
-plot(output_container(:,3), output_container(:,2)/output_container(:,1));
+plot(output_container_mod(:,3), output_container_mod(:,1));
+hold on;
+plot(output_container_mod(:,3), output_container_mod(:,2));
+hold off
 
 xlabel('amplitude (fold)');
-ylabel('fold-change (non-osc/osc)');
+ylabel('fraction (E_{h0})');
+legend('oscillatory','non-oscillatory')
+
+% plot max total chromatin opening
+output_container(:,3) = linspace(0,1,21);
+output_container_total = output_container;
+output_container_add = [output_container_mod(:,1:2),(zeros(size(output_container_mod,1),1))];
+output_container_total = output_container_total + output_container_add;
+
+figure;
+plot(output_container_total(:,3), output_container_total(:,1));
+hold on;
+plot(output_container_total(:,3), output_container_total(:,2));
+hold off
+
+xlabel('amplitude (fold)');
+ylabel('fraction (E_{h0} + E_0)');
+legend('oscillatory','non-oscillatory')
+
+%plot max methylated chromatin opening vs reaction rate constant
+% TODO: maybe continue to read in reaction rates as currently structured,
+% but iterate over rates near reaction rate to get plot. Have to think
+% about this a little more.
+
+% plot Eh_0 fraction at various rxn rates vs. time, with amplitude=1
+% TODO
+
+% %%
+% %plot fold change in max chromatin opening for osc. vs non-osc
+% output_container(:,3) = linspace(0,1,21);
+% figure;
+% plot(output_container(:,3), output_container(:,2)/output_container(:,1));
+% 
+% xlabel('amplitude (fold)');
+% ylabel('fold-change (non-osc/osc)');
 
 %%
 %plot simTFs
