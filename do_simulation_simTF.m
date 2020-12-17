@@ -20,7 +20,6 @@ END_TIME = 480;
 names = {'nfkb_oscillatory','nfkb_nonoscillatory'};
 % names = {'nfkb_oscillatory_2xtotalactivity','nfkb_persistent_2xtotalactivity'}; %use END_TIME=900 if this TF sim
 
-figure;
 output_container = zeros(21, 2);
 num_amplitudes = 21*length(names);
 output_unmod = zeros(num_amplitudes, 481);
@@ -78,7 +77,10 @@ for j = 1:length(names)
         [tsim1, results1] = ode15s(@(t,y) chromatinOde(t, y, time,{}, tf),[START_TIME END_TIME],initvalues);
 
         output = transpose(interp1(tsim1,results1,START_TIME:END_TIME, 'linear'));
-
+        if j==1
+            output1 = output;
+        end 
+        
         %store single simulation
         output_unmod(j*n,:) = output(15,:);
         output_mod(j*n,:) = output(30,:);
@@ -117,79 +119,79 @@ xlabel('time (min)');
 ylabel('fraction (E_{0})');
 
 
-%%
-%plot output_container, max chromatin opening
-output_container(:,3) = linspace(0,1,21);
-figure;
-plot(output_container(:,3), output_container(:,1));
-hold on;
-plot(output_container(:,3), output_container(:,2));
-hold off
-
-xlabel('amplitude (fold)');
-ylabel('fraction (E_0)');
-legend('oscillatory','non-oscillatory')
-
-% plot max methylated chromatin opening
-output_container_mod(:,3) = linspace(0,1,21);
-figure;
-plot(output_container_mod(:,3), output_container_mod(:,1));
-hold on;
-plot(output_container_mod(:,3), output_container_mod(:,2));
-hold off
-
-xlabel('amplitude (fold)');
-ylabel('fraction (E_{h0})');
-legend('oscillatory','non-oscillatory')
-
-% plot max total chromatin opening
-output_container(:,3) = linspace(0,1,21);
-output_container_total = output_container;
-output_container_add = [output_container_mod(:,1:2),(zeros(size(output_container_mod,1),1))];
-output_container_total = output_container_total + output_container_add;
-
-figure;
-plot(output_container_total(:,3), output_container_total(:,1));
-hold on;
-plot(output_container_total(:,3), output_container_total(:,2));
-hold off
-
-xlabel('amplitude (fold)');
-ylabel('fraction (E_{h0} + E_0)');
-legend('oscillatory','non-oscillatory')
-
-%plot max methylated chromatin opening vs reaction rate constant
-% TODO: maybe continue to read in reaction rates as currently structured,
-% but iterate over rates near reaction rate to get plot. Have to think
-% about this a little more.
-
-% plot Eh_0 fraction at various rxn rates vs. time, with amplitude=1
-% TODO
-
 % %%
-% %plot fold change in max chromatin opening for osc. vs non-osc
+% %plot output_container, max chromatin opening
 % output_container(:,3) = linspace(0,1,21);
 % figure;
-% plot(output_container(:,3), output_container(:,2)/output_container(:,1));
+% plot(output_container(:,3), output_container(:,1));
+% hold on;
+% plot(output_container(:,3), output_container(:,2));
+% hold off
 % 
 % xlabel('amplitude (fold)');
-% ylabel('fold-change (non-osc/osc)');
-
-%%
-%plot simTFs
-
-names = {'nfkb_oscillatory','nfkb_nonoscillatory'};
-figure;
-for j = 1:length(names)
-    data_name = char(names(j));
-    data = load(strcat(data_name,'.mat'));
-    data = cell2struct(struct2cell(data), {'nfkb_curves'});
-    data = (data.nfkb_curves)*1;
-    
-    
-    plot(data);
-    xlim ([0 480]);
-    ylim ([0 1.2]);
-    hold on;
-    
-end
+% ylabel('fraction (E_0)');
+% legend('oscillatory','non-oscillatory')
+% 
+% % plot max methylated chromatin opening
+% output_container_mod(:,3) = linspace(0,1,21);
+% figure;
+% plot(output_container_mod(:,3), output_container_mod(:,1));
+% hold on;
+% plot(output_container_mod(:,3), output_container_mod(:,2));
+% hold off
+% 
+% xlabel('amplitude (fold)');
+% ylabel('fraction (E_{h0})');
+% legend('oscillatory','non-oscillatory')
+% 
+% % plot max total chromatin opening
+% output_container(:,3) = linspace(0,1,21);
+% output_container_total = output_container;
+% output_container_add = [output_container_mod(:,1:2),(zeros(size(output_container_mod,1),1))];
+% output_container_total = output_container_total + output_container_add;
+% 
+% figure;
+% plot(output_container_total(:,3), output_container_total(:,1));
+% hold on;
+% plot(output_container_total(:,3), output_container_total(:,2));
+% hold off
+% 
+% xlabel('amplitude (fold)');
+% ylabel('fraction (E_{h0} + E_0)');
+% legend('oscillatory','non-oscillatory')
+% 
+% %plot max methylated chromatin opening vs reaction rate constant
+% % TODO: maybe continue to read in reaction rates as currently structured,
+% % but iterate over rates near reaction rate to get plot. Have to think
+% % about this a little more.
+% 
+% % plot Eh_0 fraction at various rxn rates vs. time, with amplitude=1
+% % TODO
+% 
+% % %%
+% % %plot fold change in max chromatin opening for osc. vs non-osc
+% % output_container(:,3) = linspace(0,1,21);
+% % figure;
+% % plot(output_container(:,3), output_container(:,2)/output_container(:,1));
+% % 
+% % xlabel('amplitude (fold)');
+% % ylabel('fold-change (non-osc/osc)');
+% 
+% %%
+% %plot simTFs
+% 
+% names = {'nfkb_oscillatory','nfkb_nonoscillatory'};
+% figure;
+% for j = 1:length(names)
+%     data_name = char(names(j));
+%     data = load(strcat(data_name,'.mat'));
+%     data = cell2struct(struct2cell(data), {'nfkb_curves'});
+%     data = (data.nfkb_curves)*1;
+%     
+%     
+%     plot(data);
+%     xlim ([0 480]);
+%     ylim ([0 1.2]);
+%     hold on;
+%     
+% end
